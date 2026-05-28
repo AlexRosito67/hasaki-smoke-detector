@@ -17,7 +17,6 @@ No runtime. No framework. No dependencies. Just a 3.7 kB C header.
 | File | Description |
 |------|-------------|
 | `alarm_model.h` | Exported model — drop into any C/C++ firmware |
-| `smoke_detection_iot.csv`  | Dataset curated and published on Kaggle by Deep Contractor |
 | `train.csv` | 28,596 balanced, normalized training samples |
 | `test.csv` | 7,150 held-out validation samples (never seen during training) |
 | `parser/main.cpp` | C++ preprocessing pipeline — normalization, CNT removal, class balancing |
