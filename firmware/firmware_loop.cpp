@@ -1,4 +1,4 @@
-#include "alarm_model.h"
+#include "smoke-detector-model-float"
 
 #define ALARM_PIN        3
 #define TRIGGER_THRESHOLD 3
