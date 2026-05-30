@@ -7,8 +7,8 @@
 Companion repository for the article:  
 **"The 3.7 kB Alarm: A Zero-Bloat Edge AI Smoke Detector in Pure C"**
 
-A fully trained, INT8-quantized neural network for fire detection via sensor fusion.  
-No runtime. No framework. No dependencies. Just a 3.7 kB C header.
+A fully trained neural network for fire detection via sensor fusion.  
+No runtime. No framework. No dependencies. Just a 3.8 kB C header.
 
 ---
 
@@ -16,11 +16,16 @@ No runtime. No framework. No dependencies. Just a 3.7 kB C header.
 
 | File | Description |
 |------|-------------|
-| `alarm_model.h` | Exported model — drop into any C/C++ firmware |
+| `smoke-detector-model-float.h` | Exported model — drop into any C/C++ firmware |
 | `train.csv` | 28,596 balanced, normalized training samples |
 | `test.csv` | 7,150 held-out validation samples (never seen during training) |
 | `parser/main.cpp` | C++ preprocessing pipeline — normalization, CNT removal, class balancing |
 | `firmware/firmware_loop.cpp` | Arduino-compatible inference loop with state accumulator |
+
+> **Note on quantization:** The header uses float32. Post-publication testing with
+> Hasaki's `quantize_test` revealed that INT8 quantization introduced unacceptable
+> precision loss for this model. The float32 header is 3.8 kB — practically identical
+> to the originally claimed 3.7 kB. Accuracy is fully preserved.
 
 ---
 
@@ -28,9 +33,9 @@ No runtime. No framework. No dependencies. Just a 3.7 kB C header.
 
 ```
 12 inputs → 8 (ReLU) → 4 (ReLU) → 1 (Sigmoid)
-Quantization: INT8 symmetric
-Weights: 96 bytes
-Total Flash footprint: ~3.7 kB
+Quantization: float32
+Weights: 96 × 4 bytes
+Total Flash footprint: ~3.8 kB
 ```
 
 **Input features** (12 sensors, 4–6 physical pins via I2C/UART):
@@ -75,7 +80,7 @@ Requires [Hasaki 刃先](https://github.com/AlexRosito67/hasaki).
 
 ```bash
 hasaki -d 12,8,4,1 -act relu,relu,sigmoid \
-  -a validate -f test.csv -m alarm_model.h \
+  -a validate -f test.csv -m smoke-detector-model-float.h \
   2>/dev/null | awk '
 /Expected:/ {
   split($0, a, "Expected: "); split(a[2], b, " "); expected=int(b[1]+0.5)
@@ -99,7 +104,7 @@ END {
 ## Firmware integration
 
 ```c
-#include "alarm_model.h"
+#include "smoke-detector-model-float.h"
 
 #define ALARM_PIN         3
 #define TRIGGER_THRESHOLD 3
@@ -143,7 +148,7 @@ void loop() {
 Original data collected at 1 Hz by Stefan Blattmann —  
 *Real-time Smoke Detection with AI-based Sensor Fusion*
 
- (Datasets Grandmaster):  
+Curated and published on Kaggle by Deep Contractor (Datasets Grandmaster):  
 [Smoke Detection Dataset](https://www.kaggle.com/datasets/deepcontractor/smoke-detection-dataset)
 
 ---
@@ -155,4 +160,4 @@ Exports standalone C headers. No runtime. No Python. No dependencies.
 
 ---
 
-*Alex Rosito — Valley Glen, CA*
+*Alex Rosito — Burbank, CA*
