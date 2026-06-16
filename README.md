@@ -157,6 +157,7 @@ Curated and published on Kaggle by Deep Contractor (Datasets Grandmaster):
 
 [Hasaki 刃先](https://github.com/AlexRosito67/hasaki) — CLI C++ tool for embedded neural network training.  
 Exports standalone C headers. No runtime. No Python. No dependencies.
+[Hasaki Pro is available here](https://hasaki.lemonsqueezy.com/checkout/buy/1b6ec0ae-10ec-49dc-8c6f-2af146742a33).
 
 ---
 
