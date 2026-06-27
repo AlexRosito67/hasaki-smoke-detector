@@ -4,10 +4,10 @@
 
 # hasaki-smoke-detector
 
-Companion repository for the article:  
+Companion repository for the article:
 **"The 3.7 kB Alarm: A Zero-Bloat Edge AI Smoke Detector in Pure C"**
 
-A fully trained neural network for fire detection via sensor fusion.  
+A fully trained neural network for fire detection via sensor fusion.
 No runtime. No framework. No dependencies. Just a 3.8 kB C header.
 
 ---
@@ -145,20 +145,20 @@ void loop() {
 
 ## Dataset
 
-Original data collected at 1 Hz by Stefan Blattmann —  
+Original data collected at 1 Hz by Stefan Blattmann —
 *Real-time Smoke Detection with AI-based Sensor Fusion*
 
-Curated and published on Kaggle by Deep Contractor (Datasets Grandmaster):  
+Curated and published on Kaggle by Deep Contractor (Datasets Grandmaster):
 [Smoke Detection Dataset](https://www.kaggle.com/datasets/deepcontractor/smoke-detection-dataset)
 
 ---
 
 ## Trained with
 
-[Hasaki 刃先](https://github.com/AlexRosito67/hasaki) — CLI C++ tool for embedded neural network training.  
+[Hasaki 刃先](https://github.com/AlexRosito67/hasaki) — CLI C++ tool for embedded neural network training.
 Exports standalone C headers. No runtime. No Python. No dependencies.
 [Hasaki Pro is available here](https://hasaki.lemonsqueezy.com/checkout/buy/1b6ec0ae-10ec-49dc-8c6f-2af146742a33).
 
 ---
 
-*Alex Rosito — Burbank, CA*
+*Alex Rosito — Valley Glen, CA*
